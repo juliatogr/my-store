@@ -15,4 +15,12 @@ export class AppComponent {
     age: 26,
     avatar: 'https://www.w3schools.com/howto/img_avatar.png'
   }
+
+  toggleButton(){
+    this.btnDisabled = !this.btnDisabled;
+  }
+
+  increaseAge(){
+    this.person.age++;
+  }
 }

@@ -1,12 +1,20 @@
+<h1>Eventos</h1>
+<button [disabled]="btnDisabled">Enviar</button>
+<button (click) ="toggleButton()">Toggle Button</button>
+<p>Edad {{person.age}}</p>
+<button (click) ="increaseAge()">Age ++</button>
+<hr/>
+
 <h1>Propiedades</h1>
 <button [disabled]="btnDisabled">Enviar</button>
 <input type="text" [value]="person.name"/>
 <progress max="100" [value]="person.age"></progress>
 <img max = "100" [src]="person.avatar"/>
+
 <hr/>
+
 <h1>Hola mundo</h1>
 <h2>{{'Hola Mundo'.repeat(5) }}</h2>
 <p>3 + 3 = {{3+3}}</p>
-
 <h3>Hola, soy {{ name }} y tengo {{age}} años</h3>
 <img src={{img}} alt="image">
