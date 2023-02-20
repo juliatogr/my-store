@@ -1,3 +1,15 @@
+<h1>*ngfor Objs</h1>
+<div>
+  <div *ngFor="let product of products">
+    <img [src]="product.image" alt="image">
+    <h2>{{product.price}}</h2>
+    <p>{{product.name}}</p>
+  </div>
+</div>>
+
+<hr/>
+
+
 <h1>*ngfor</h1>
 <input type="text" required [(ngModel)]="newName"/>
 <button (click)="addName()">Add name</button>
@@ -10,6 +22,7 @@
 </ul>
 
 <hr/>
+
 <h1>*ngIf</h1>
 <input type="text" required [(ngModel)]="person.name"/>
 <p *ngIf="person.name === 'Júlia'">Soy Júlia</p>
