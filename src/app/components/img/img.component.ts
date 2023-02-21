@@ -17,7 +17,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
 
   @Input() alt: string = '';
   @Output() loaded = new EventEmitter<string>();
-  imageDefault = './assets/images/default.jpg';
+  imageDefault = './assets/images/default.png';
   // counter = 0;
   // counterFn: number | undefined;
 
