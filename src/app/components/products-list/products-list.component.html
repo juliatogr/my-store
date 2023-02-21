@@ -5,10 +5,10 @@
   Total ${{total}}
 </p>
 <p>
-  Today {{ today | date }}
+  Today {{ today | date:'short' }}
 </p>
 <p>
-  Otra fecha: {{ date | date: 'yyyy.dd.MM' }}
+  Otra fecha: {{ date | timeAgo }}
 </p>
 <p>
   {{ 'hOLA QUe taL' | uppercase }}
