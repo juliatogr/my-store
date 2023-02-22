@@ -32,7 +32,6 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     // before - during render
     // changes inputs -- times
     console.log('ngOnChanges', 'imgValue =>', this.img);
-    console.log('changes ', changes);
   }
 
   ngOnInit(): void {
@@ -57,6 +56,7 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     console.log('ngOnDestroy');
     //window.clearInterval(this.counterFn);
   }
+
   imgError() {
     this.img = this.imageDefault;
   }
@@ -65,4 +65,5 @@ export class ImgComponent implements OnInit, OnChanges, AfterViewInit, OnDestroy
     console.log('log hijo');
     this.loaded.emit(this.img);
   }
+
 }

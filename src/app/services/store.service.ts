@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class StoreService {
+
   private myShoppingCart: Product[] = [];
   private myCart = new BehaviorSubject<Product[]>([]);
 
@@ -19,6 +20,7 @@ export class StoreService {
   getShoppingCart(){
     return this.myShoppingCart;
   }
+
   getTotal() {
     return this.myShoppingCart.reduce((sum, item) => sum + item.price, 0);
   }

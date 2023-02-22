@@ -13,7 +13,7 @@ export class NavComponent implements OnInit {
 
   constructor(
     private storeService: StoreService
-  ){}
+  ) { }
 
   ngOnInit(): void {
     this.storeService.myCart$.subscribe(products => {
@@ -24,4 +24,5 @@ export class NavComponent implements OnInit {
   toggleMenu(){
     this.activeMenu = !this.activeMenu;
   }
+
 }
