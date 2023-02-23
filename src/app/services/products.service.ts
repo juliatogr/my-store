@@ -4,6 +4,7 @@ import { CreateProductDTO, Product, UpdateProductDTO } from '../models/product.m
 import { retry, catchError, map } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { environment } from './../../environments/environment'
+import { zip } from 'rxjs'
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,13 @@ export class ProductsService {
           taxes: .19 * item.price
         }
       }))
+    );
+  }
+
+  fetchReadAndUpdate(id: string, dto: UpdateProductDTO) {
+    return zip(
+      this.getProduct(id),
+      this.update(id, dto)
     );
   }
 
