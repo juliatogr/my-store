@@ -1,5 +1,6 @@
 <app-nav ></app-nav>
-<button (click)="createUser()">Create user</button>
+<router-outlet></router-outlet>
+<!-- <button (click)="createUser()">Create user</button>
 <p>
   <a href="./assets/files/text.txt" download>Download</a>
 </p>
@@ -12,7 +13,7 @@
 </p>
 <hr/>
 <app-products-list></app-products-list>
-<!-- <p><input type="text" [(ngModel)]="imgParent"></p>
+<p><input type="text" [(ngModel)]="imgParent"></p>
 <button (click)="toggleImg()">Toggle Img</button>
 <p>{{ showImg }}</p>
 <app-img (loaded)="onLoaded($event)" [img]="imgParent"></app-img>
