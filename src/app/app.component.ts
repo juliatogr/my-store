@@ -53,7 +53,6 @@ export class AppComponent {
         this.imgRta = rta.location;
       })
     }
-
   }
 
 }
