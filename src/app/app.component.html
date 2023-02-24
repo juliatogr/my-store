@@ -6,7 +6,10 @@
 <p>
   <button (click)="downloadPdf()">Download PDF</button>
 </p>
-
+<p>
+  <input type="file" (change)="onUpload($event)">
+  <img [src]="imgRta">
+</p>
 <hr/>
 <app-products-list></app-products-list>
 <!-- <p><input type="text" [(ngModel)]="imgParent"></p>

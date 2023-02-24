@@ -13,12 +13,7 @@ export class AppComponent {
   //imgParent='https://www.w3schools.com/howto/img_avatar.png';
   showImg = true;
   token = '';
-  profile: User = {
-    id: '',
-    name: '',
-    email: '',
-    password: ''
-  }
+  imgRta = '';
 
   constructor (
     private usersService: UsersService,
@@ -46,6 +41,19 @@ export class AppComponent {
 
   downloadPdf() {
     this.filesService.getFile('my.pdf', "https://young-sands-07814.herokuapp.com/api/files/dummy.pdf", 'application/pdf').subscribe();
+  }
+
+  onUpload(event: Event) {
+    const element = event.target as HTMLInputElement;
+    const file = element.files?.item(0);
+
+    if (file){
+      this.filesService.uploadFile(file)
+      .subscribe( rta => {
+        this.imgRta = rta.location;
+      })
+    }
+
   }
 
 }
