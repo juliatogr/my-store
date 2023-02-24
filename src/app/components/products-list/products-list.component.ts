@@ -17,7 +17,7 @@ export class ProductsListComponent {
   myShoppingCart: Product[] = [];
   total = 0;
   @Input() products: Product[] = [];
-  @Output() loadMore = new EventEmitter<boolean>();
+  @Output() loadMore = new EventEmitter();
   showProductDetail = false;
   productChosen: Product | null = null;
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
@@ -118,6 +118,6 @@ export class ProductsListComponent {
   }
 
   onLoadMore(){
-    this.loadMore.emit(true);
+    this.loadMore.emit();
   }
 }
