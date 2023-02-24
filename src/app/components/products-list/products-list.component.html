@@ -11,7 +11,6 @@
 </div>
 
 <div class="product-detail" [class.active]="showProductDetail">
-  {{ statusDetail }}
   <div *ngIf="productChosen">
     <button (click)="toggleProductDetail()">Close</button>
     <h1>{{ productChosen.title }}</h1>>
@@ -21,7 +20,7 @@
       </ng-template>
     </swiper>
     <p>{{ productChosen.description }}</p>
-    <button (click)="updateProduct()">Edit</button>
-    <button (click)="deleteProduct()">Delete</button>
+<!--     <button (click)="updateProduct()">Edit</button>
+    <button (click)="deleteProduct()">Delete</button> -->
   </div>
 </div>

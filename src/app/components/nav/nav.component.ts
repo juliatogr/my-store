@@ -2,7 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { StoreService } from '../../services/store.service';
 import { AuthService } from '../..//services/auth.service';
 import { User } from 'src/app/models/user.model';
-import { switchMap } from 'rxjs';
+import { CategoriesService } from 'src/app/services/category.service';
+import { Category } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-nav',
@@ -14,37 +15,24 @@ export class NavComponent implements OnInit {
   activeMenu = false;
   counter = 0;
   profile: User | null = null;
+  categories: Category[] = [];
 
   constructor(
     private storeService: StoreService,
-    private authService: AuthService
+    private authService: AuthService,
+    private categoryService: CategoriesService
   ) { }
 
   ngOnInit(): void {
     this.storeService.myCart$.subscribe(products => {
       this.counter = products.length;
-    })
+    });
+    this.getAllCategories();
   }
 
   toggleMenu(){
     this.activeMenu = !this.activeMenu;
   }
-
-
-/*   login() {
-    this.authService.login('sebas@mail.com', '1212')
-    .subscribe(rta => {
-      console.log(rta.access_token);
-      this.token = rta.access_token;
-    });
-  }
-
-  getProfile() {
-    return this.authService.profile(this.token)
-    .subscribe(user => {
-      this.profile = user;
-    });
-  } */
 
   loginAndGet() {
     this.authService.loginAndGet('sebas@mail.com', '1212')
@@ -53,5 +41,12 @@ export class NavComponent implements OnInit {
         this.profile = user;
       }
     )
+  }
+
+  getAllCategories() {
+    this.categoryService.getAll()
+    .subscribe( data => {
+      this.categories = data;
+    });
   }
 }

@@ -51,7 +51,7 @@ export class ProductsListComponent {
     })
   }
 
-  readAndUpdate(id: string){
+/*   readAndUpdate(id: string){
 
     this.productsService.getProduct(id)
     .pipe(
@@ -68,9 +68,9 @@ export class ProductsListComponent {
       const read = response[0];
       const update = response[1];
     })
-  }
+  } */
 
-  createNewProduct() {
+/*   createNewProduct() {
     const product: CreateProductDTO = {
       title: 'Nuevo producto',
       description: 'iewkfd',
@@ -83,9 +83,9 @@ export class ProductsListComponent {
       console.log('created', data);
       this.products.unshift(data);
     });
-  }
+  } */
 
-  updateProduct() {
+/*   updateProduct() {
     const changes: UpdateProductDTO = {
       title:'Producto editado',
       categoryId: 1
@@ -101,8 +101,8 @@ export class ProductsListComponent {
         this.productChosen = data;
       })
     }
-  }
-
+  } */
+/*
   deleteProduct() {
     const id = this.productChosen?.id;
 
@@ -115,7 +115,7 @@ export class ProductsListComponent {
       })
     }
 
-  }
+  } */
 
   onLoadMore(){
     this.loadMore.emit();
