@@ -12,6 +12,11 @@ import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full'
+  },
+  {
     path: 'home',
     component: HomeComponent
   },
@@ -24,7 +29,7 @@ const routes: Routes = [
     component: CategoryComponent
   },
   {
-    path: 'mycart',
+    path: 'my-cart',
     component: MycartComponent
   }
   ,

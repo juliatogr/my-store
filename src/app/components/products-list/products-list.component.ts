@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { switchMap } from 'rxjs/operators'
 
 import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/product.model';
@@ -12,27 +12,14 @@ import { StoreService } from 'src/app/services/store.service';
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent {
 
   myShoppingCart: Product[] = [];
   total = 0;
-  products: Product[] = [];
+  @Input() products: Product[] = [];
+  @Output() loadMore = new EventEmitter<boolean>();
   showProductDetail = false;
-  productChosen: Product = {
-    id: '',
-    price: 0,
-    images: [],
-    title: '',
-    category: {
-      id: '',
-      name: '',
-      typeImg: ''
-    },
-    description: ''
-  };
-
-  limit = 10;
-  offset = 0;
+  productChosen: Product | null = null;
   statusDetail: 'loading' | 'success' | 'error' | 'init' = 'init';
 
   constructor(
@@ -40,10 +27,6 @@ export class ProductsListComponent implements OnInit {
     private productsService: ProductsService
   ) {
     this.myShoppingCart = this.storeService.getShoppingCart();
-  }
-
-  ngOnInit(): void {
-    this.loadMore();
   }
 
   onAddToShoppingCart(product: Product){
@@ -108,30 +91,33 @@ export class ProductsListComponent implements OnInit {
       categoryId: 1
     }
 
-    const id = this.productChosen.id;
-    this.productsService.update(id, changes)
-    .subscribe(data => {
-      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
-      this.products[productIndex] = data;
-      this.productChosen = data;
-    })
+    const id = this.productChosen?.id;
+
+    if (id){
+      this.productsService.update(id, changes)
+      .subscribe(data => {
+        const productIndex = this.products.findIndex(item => item.id === id);
+        this.products[productIndex] = data;
+        this.productChosen = data;
+      })
+    }
   }
 
   deleteProduct() {
-    const id = this.productChosen.id;
-    this.productsService.delete(id)
-    .subscribe(data => {
-      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id);
-      this.products.splice(productIndex, 1);
-      this.showProductDetail = false;
-    })
+    const id = this.productChosen?.id;
+
+    if (id) {
+      this.productsService.delete(id)
+      .subscribe(data => {
+        const productIndex = this.products.findIndex(item => item.id === id);
+        this.products.splice(productIndex, 1);
+        this.showProductDetail = false;
+      })
+    }
+
   }
 
-  loadMore() {
-    this.productsService.getAllProducts(this.limit, this.offset)
-    .subscribe(data => {
-      this.products = this.products.concat(data);
-      this.offset += this.limit;
-    })
+  onLoadMore(){
+    this.loadMore.emit(true);
   }
 }
