@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { StoreService } from '../../services/store.service';
-import { AuthService } from '../..//services/auth.service';
+import { StoreService } from '../../../services/store.service';
+import { AuthService } from '../../../services/auth.service';
 import { User } from 'src/app/models/user.model';
 import { CategoriesService } from 'src/app/services/category.service';
 import { Category } from 'src/app/models/product.model';
