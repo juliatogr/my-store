@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { switchMap } from 'rxjs/operators'
 
@@ -17,6 +18,11 @@ export class ProductsListComponent {
   myShoppingCart: Product[] = [];
   total = 0;
   @Input() products: Product[] = [];
+  @Input() set productId(id: string | null) {
+    if (id) {
+      this.onShowDetail(id);
+    }
+  };
   @Output() loadMore = new EventEmitter();
   showProductDetail = false;
   productChosen: Product | null = null;
@@ -24,7 +30,8 @@ export class ProductsListComponent {
 
   constructor(
     private storeService: StoreService,
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private location: Location
   ) {
     this.myShoppingCart = this.storeService.getShoppingCart();
   }
@@ -40,7 +47,10 @@ export class ProductsListComponent {
 
   onShowDetail(id: string){
     this.statusDetail = 'loading';
-    this.toggleProductDetail();
+
+    if (!this.showProductDetail) {
+       this.showProductDetail = true;
+    }
     this.productsService.getProduct(id)
     .subscribe(data => {
       this.productChosen = data;

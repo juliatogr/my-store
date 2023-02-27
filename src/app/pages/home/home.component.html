@@ -1,1 +1,5 @@
-<app-products-list (loadMore)="onLoadMore()" [products]="products"></app-products-list>
+<app-products-list
+  [productId]="productId"
+  [products]="products"
+  (loadMore)="onLoadMore()"
+></app-products-list>
