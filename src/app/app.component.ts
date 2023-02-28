@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from './models/user.model';
+// import { User } from './models/user.model';
 import { UsersService } from './services/users.service';
 import { FilesService } from './services/files.service';
 
@@ -14,6 +14,7 @@ export class AppComponent {
   showImg = true;
   token = '';
   imgRta = '';
+  title = 'my-store';
 
   constructor (
     private usersService: UsersService,
@@ -32,7 +33,8 @@ export class AppComponent {
     this.usersService.create({
       name: 'Sebas',
       email: 'sebas@mail.com',
-      password: '1212'
+      password: '1212',
+      role: 'customer'
     })
     .subscribe(rta => {
       console.log(rta);
