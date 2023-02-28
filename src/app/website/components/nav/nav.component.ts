@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 import { User } from 'src/app/models/user.model';
 import { CategoriesService } from 'src/app/services/category.service';
 import { Category } from 'src/app/models/product.model';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-nav',
@@ -20,7 +21,8 @@ export class NavComponent implements OnInit {
   constructor(
     private storeService: StoreService,
     private authService: AuthService,
-    private categoryService: CategoriesService
+    private categoryService: CategoriesService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -41,6 +43,12 @@ export class NavComponent implements OnInit {
         this.profile = user;
       }
     )
+  }
+
+  logout() {
+    this.authService.logout();
+    this.profile = null;
+    this.router.navigate(['/home']);
   }
 
   getAllCategories() {
