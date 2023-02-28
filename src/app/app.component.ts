@@ -1,14 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // import { User } from './models/user.model';
 import { UsersService } from './services/users.service';
 import { FilesService } from './services/files.service';
+import { AuthService } from './services/auth.service';
+import { TokenService } from './services/token.service';
 
 @Component({
   selector: 'app-root',
   template: `<router-outlet></router-outlet>`,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   imgParent='';
   //imgParent='https://www.w3schools.com/howto/img_avatar.png';
   showImg = true;
@@ -18,12 +20,22 @@ export class AppComponent {
 
   constructor (
     private usersService: UsersService,
-    private filesService: FilesService
+    private filesService: FilesService,
+    private tokenService: TokenService,
+    private authService: AuthService
   ) {}
 
- /*  onLoaded(img: string) {
-    console.log('log padre', img);
-  } */
+  ngOnInit() {
+    const token = this.tokenService.getToken();
+    if (token) {
+      this.authService.getProfile()
+        .subscribe();
+    }
+  }
+
+  /*  onLoaded(img: string) {
+     console.log('log padre', img);
+   } */
 
   toggleImg() {
     this.showImg = !this.showImg;
